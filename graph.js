@@ -151,3 +151,31 @@ const explore = (graph, current, visited) => {
 
     return true
 }
+
+const largestComponent = (graph) => {
+
+    const visited = new Set()
+    const largest = 0
+
+    for(let node in graph) {
+        const size = traverse(graph, node, visited)
+        if(size > largest) largest = size
+    }
+
+    return largest
+}
+
+const traverse = (graph, current, visited) => {
+
+    if(visited.has(current)) return 0
+
+    visited.add(current)
+
+    let count = 1;
+
+    for(let neighbor of graph[current]) {
+        size += traverse(graph, neighbor, visited)
+    }
+
+    return size
+}
