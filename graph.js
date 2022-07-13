@@ -122,4 +122,32 @@ const buildGraph = (edges) => {
     return graph
 }
 
-console.log(undirectedPath(edges, 'j', 'm'))
+// console.log(undirectedPath(edges, 'j', 'm'))
+
+const connectedComponentsCount = (graph) => {
+
+    const visited = new Set()
+    
+    for(let node in graph) {
+        explore(graph, node, visited)
+    }
+
+    return count
+}
+
+const explore = (graph, current, visited) => {
+    
+    if(visited.has(String(current))) return false
+
+    visited.add(String(current))
+
+    let count = 0
+
+    for(let neighbor of graph[current]) {
+        if(explore(graph, neighbor, visited) === true) {
+            count += 1
+        }
+    }
+
+    return true
+}
